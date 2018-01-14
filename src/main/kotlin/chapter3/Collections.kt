@@ -10,4 +10,20 @@ fun main(args: Array<String>):Unit {
     val strings = listOf("first", "second", "fourteenth")
 
     println(strings.last())
+
+    println(list.joinToString(", ", "Hello: ", " !!!"))
+
+    println("Kotlin".lastChar())
+    println("Kotlin".firstChar)
+
+    val view:View = Button()
+    view.click()
+}
+
+open class View {
+    open fun click() = println("View clicked")
+}
+
+class Button : View() {
+    override fun click() = println("Button clicked")
 }
