@@ -2,19 +2,8 @@ package algorithms
 
 import java.util.*
 
-data class MyDate(val day: Int, val month: Int, val year: Int) {
-    fun isBeforeOrEqual(date: MyDate):Boolean {
-        val b = date.year >= year
-        val b1 = b && date.month >= month
-        return (b) ||
-                b1 ||
-                (date.day >= day && b1)
-    }
+data class MyDate(val day: Int, val month: Int, val year: Int)
 
-    fun toDigit():Int {
-        return day + month*31 + year*365
-    }
-}
 
 fun main(args: Array<String>) {
     val sc = Scanner(System.`in`)
@@ -26,23 +15,25 @@ fun main(args: Array<String>) {
 }
 
 fun calculateFine(returnedMyDate: MyDate, expectedReturnMyDate: MyDate): Int {
-    if(returnedMyDate.isBeforeOrEqual(expectedReturnMyDate)) {
+   val year = expectedReturnMyDate.year - returnedMyDate.year
+    val month = expectedReturnMyDate.month - returnedMyDate.month
+    val day = expectedReturnMyDate.day - returnedMyDate.day
+
+    if(year < 0) {
+        return 10000
+    } else if (year > 0) {
         return 0
     }
 
-    val yearDiff = returnedMyDate.year - expectedReturnMyDate.year
-    if (yearDiff > 0) {
-        return 10_000
+    if (month < 0) {
+        return 500 * Math.abs(month)
+    } else if (month > 0) {
+        return 0
     }
 
-    val monthDiff = returnedMyDate.month - expectedReturnMyDate.month
-
-    if (monthDiff > 0) {
-        return 500 * monthDiff
+    if (day < 0) {
+        return 15 * Math.abs(day)
     }
 
-    val dayDiff = returnedMyDate.day - expectedReturnMyDate.day
-
-
-    return 15 * dayDiff
+    return 0
 }

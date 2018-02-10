@@ -21,7 +21,7 @@ fun calculateLeftEnergy(arr: IntArray, k: Int): Int {
         initialEnergy -= calculateEnergyLossForCloud(arr[i])
     }
 
-//    if(arr.size % k != 0) initialEnergy -= 1
+    if(arr.size % k != 0) initialEnergy -= 1
 
     return initialEnergy
 }
